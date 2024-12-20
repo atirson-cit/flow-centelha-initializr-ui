@@ -17,16 +17,15 @@ type TBody = {
   dependencies: (typeof dependenciesOpt)[number][];
 };
 
-const a: TBody = {
-  dependencies: ["Async"],
-  language: "",
-  package_manager: "npm",
-  framework: "Node.js",
+export type TLangReturn = {
+  package_managers: string[];
+  frameworks: string[];
+  dependencies: string[];
 };
 
 class SnippetService {
   static async getLanguages(lang: string) {
-    const response = await api.get(`/languages/${lang}`);
+    const response = await api.get<TLangReturn>(`/languages/${lang}`);
 
     return response.data;
   }
