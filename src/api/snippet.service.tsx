@@ -10,7 +10,7 @@ const dependenciesOpt = [
   "Axios",
 ] as const;
 
-type TBody = {
+export type TBody = {
   language: string;
   package_manager: (typeof package_managersOpt)[number];
   framework: (typeof frameworksOpt)[number];
@@ -30,7 +30,7 @@ class SnippetService {
     return response.data;
   }
   static async initConfig(body: TBody) {
-    const response = await api.post("/init-configs", body);
+    const response = await api.post<string>("/init-configs", body);
 
     return response.data;
   }
